@@ -9,6 +9,7 @@ __pycache__/
 .vscode/
 # Gemini
 .gemini/
+GEMINI.md
 # Data
 recipes.csv
 recipes_clean_1000.json
