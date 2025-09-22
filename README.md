@@ -47,6 +47,7 @@ The application will be available at `http://localhost:5000` in your web browser
 To stop the application, run the following command in the project directory:
 ```bash
 docker-compose down
+```
 
 ### 📜 License
 - This project is for educational and personal use.
