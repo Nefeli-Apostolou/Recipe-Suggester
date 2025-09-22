@@ -22,7 +22,7 @@ This application runs on a pre-processed JSON file created from a public Kaggle 
 
 1.  **Get the Data:**
     First, download the raw dataset (`recipes.csv`) from the following Kaggle link:
-    [\[https://www.kaggle.com/datasets/iraz/recipes-with-macros-and-diets/data\](https://www.kaggle.com/datasets/iraz/recipes-with-macros-and-diets/data)](https://www.kaggle.com/datasets/irkaal/foodcom-recipes-and-reviews)
+    [\[https://www.kaggle.com/datasets/iraz/recipes-with-macros-and-diets/data\](https://www.kaggle.com/datasets/iraz/recipes-with-macros-and-diets/data)]
 
 2.  **Process the Data:**
     To generate the `recipes_clean_1000.json` file, you need to run the `cleaning.ipynb` notebook. This notebook will clean the raw data and produce the JSON file that the app uses.
@@ -31,7 +31,7 @@ This application runs on a pre-processed JSON file created from a public Kaggle 
     To run this application, you will need to have **Docker** and **Docker Compose** installed on your machine.
     * Clone the repository to your local machine:
       ```bash
-      git clone [https://github.com/Nefeli-Apostolou/Recipe-Suggester.git](https://github.com/Nefeli-Apostolou/Recipe-Suggester.git)
+      git clone [https://github.com/Nefeli-Apostolou/Recipe-Suggester.git]
       ```
     * Navigate to the project directory:
       ```bash
