@@ -31,7 +31,7 @@ This application runs on a pre-processed JSON file created from a public Kaggle 
     To run this application, you will need to have **Docker** and **Docker Compose** installed on your machine.
     * Clone the repository to your local machine:
       ```bash
-      git clone [https://github.com/Nefeli-Apostolou/Recipe-Suggester.git]
+      git clone https://github.com/Nefeli-Apostolou/Recipe-Suggester.git
       ```
     * Navigate to the project directory:
       ```bash
