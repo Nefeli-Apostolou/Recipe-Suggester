@@ -1,15 +1,23 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
+# Python virtual environment
 .venv/
 
-# VSCode
+# Python cache
+__pycache__/
+*.pyc
+
+# Local config (if you have one)
+.env
+
+# --- DATA FILES (DO NOT UPLOAD) ---
+*.csv
+*.json
+*.jsonl
+
+# --- MODEL (DO NOT UPLOAD) ---
+t5-recipe-generator/
+
+# --- OTHER ---
+.DS_Store
 .vscode/
-# Gemini
-.gemini/
-GEMINI.md
-# Data
-recipes.csv
-recipes_clean_1000.json
+wandb/
+

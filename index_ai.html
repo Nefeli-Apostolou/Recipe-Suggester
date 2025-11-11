@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Recipe Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Simple spinner for loading */
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #F472B6; /* pink-500 */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 min-h-screen">
+
+    <div class="container mx-auto p-8">
+        <h1 class="text-5xl font-bold text-center text-white mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-purple-200">
+            AI Recipe Generator
+        </h1>
+
+        <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg mb-8 backdrop-filter backdrop-blur-lg">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input type="text" id="ingredients-input" placeholder="Enter ingredients (comma-separated)..." class="p-3 border border-gray-300 rounded-lg col-span-1 md:col-span-2 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                <button id="generate-btn" class="bg-pink-500 text-white p-3 rounded-lg hover:bg-pink-600 transition-colors col-span-1">
+                    Generate Recipe
+                </button>
+            </div>
+        </div>
+
+        <div id="loading-spinner" class="flex justify-center mt-12" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+
+        <div id="result-container" class="bg-white bg-opacity-25 p-6 rounded-lg shadow-lg" style="display: none;">
+            <h2 class="text-3xl font-bold text-white mb-4">Your AI-Generated Recipe:</h2>
+            <div id="recipe-output" class="text-white text-lg whitespace-pre-wrap">
+                </div>
+        </div>
+
+    </div>
+
+    <script>
+        const ingredientsInput = document.getElementById('ingredients-input');
+        const generateBtn = document.getElementById('generate-btn');
+        const resultContainer = document.getElementById('result-container');
+        const recipeOutput = document.getElementById('recipe-output');
+        const loadingSpinner = document.getElementById('loading-spinner');
+
+        async function handleGenerateClick() {
+            const ingredients = ingredientsInput.value
+                .split(',')
+                .map(i => i.trim())
+                .filter(i => i);
+
+            if (ingredients.length === 0) {
+                alert("Please enter at least one ingredient.");
+                return;
+            }
+
+            // Show loading, hide old result
+            loadingSpinner.style.display = 'flex';
+            resultContainer.style.display = 'none';
+            generateBtn.disabled = true;
+
+            try {
+                // Call your new Flask server API
+                const response = await fetch('http://localhost:5000/api/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ingredients: ingredients })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                
+                // Format and display the recipe
+                const formattedRecipe = formatRecipeText(data.recipe);
+                recipeOutput.innerHTML = formattedRecipe;
+                resultContainer.style.display = 'block';
+
+            } catch (error) {
+                console.error("Failed to generate recipe:", error);
+                recipeOutput.textContent = "Error generating recipe. Please check the console and ensure the server is running.";
+                resultContainer.style.display = 'block';
+            } finally {
+                // Hide loading, re-enable button
+                loadingSpinner.style.display = 'none';
+                generateBtn.disabled = false;
+            }
+        }
+
+        function formatRecipeText(text) {
+            // This formats the "name: ... instructions: ..." text
+            let html = text
+                .replace(/name: (.*?)(instructions:|$)/i, '<h3 class="text-2xl font-bold mb-3">$1</h3><strong class="text-lg">Instructions:</strong><br>')
+                .replace(/instructions:/i, '<strong class="text-lg">Instructions:</strong><br>');
+            
+            // Add line breaks for each step
+            return html.replace(/\. /g, '.<br><br>');
+        }
+
+        generateBtn.addEventListener('click', handleGenerateClick);
+    </script>
+
+</body>
+</html>

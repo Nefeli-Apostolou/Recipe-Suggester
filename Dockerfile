@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application files
 COPY app.py .
-COPY recipes_clean_1000.json .
+COPY recipes_clean.json .
 COPY index_new.html .
 
 # Expose the port the app runs on
