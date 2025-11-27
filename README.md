@@ -2,7 +2,7 @@
 
 This web application uses a fine-tuned T5 transformer model to generate new, unique recipes based on a list of ingredients provided by the user.
 
-This project is a complete pivot from its original version, which was a static recipe-filtering app. It now uses a powerful AI model trained on over 200,000 recipes to create content on the fly.
+This project is a complete pivot from its original version, which was a static recipe-filtering app. It now uses an AI model trained on over 200,000 recipes to create content on the fly.
 
 ## 🚀 Features
 
