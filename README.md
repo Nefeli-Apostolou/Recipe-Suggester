@@ -24,15 +24,13 @@ This project is a complete pivot from its original version, which was a static r
 
 ---
 
-## 🏃 How to Run the Application
+##  How to Run the Application
 
 There are two parts to this project: **1. Running the App** (using the pre-trained model) and **2. Training the Model** (creating your own).
 
 ### 1. Running the App (Locally)
 
-This guide assumes you have already downloaded the trained model folder.
-
-> **Note:** The `t5-recipe-generator` model folder is **not** included in this repository (it is too large for Git). You must download it separately after training your own model (see below).
+You do not need to train the model yourself. The app will pull the pre-trained weights from the cloud.
 
 1.  **Clone the repository:**
     ```bash
@@ -40,18 +38,7 @@ This guide assumes you have already downloaded the trained model folder.
     cd Recipe-Suggester
     ```
 
-2.  **Place the Model:**
-    Download your trained `t5-recipe-generator` folder and place it in the root of this project directory. The folder structure should look like this:
-    ```
-    /Recipe-Suggester/
-    |-- /t5-recipe-generator/  <-- Your downloaded model
-    |-- app.py
-    |-- index_ai.html
-    |-- requirements.txt
-    |-- ... (other files)
-    ```
-
-3.  **Create a Virtual Environment:**
+2.  **Create a Virtual Environment:**
     ```bash
     python -m venv .venv
     # On Windows
@@ -60,19 +47,18 @@ This guide assumes you have already downloaded the trained model folder.
     source .venv/bin/activate
     ```
 
-4.  **Install Dependencies:**
+3.  **Install Dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
 
-5.  **Run the Flask Server:**
-    This will load the model into memory and start the API.
+4.  **Run the Flask Server:**
     ```bash
     python app.py
     ```
-    Wait for the terminal to show `Model loaded successfully`.
+   On the first run, you will see a progress bar as the application downloads the model (~250MB) from Hugging Face. Subsequent runs will be instant.
 
-6.  **Open the App:**
+5.  **Open the App:**
     In your web browser, open the `index_ai.html` file. You can now enter ingredients and generate recipes!
 
 ### 2. Training Your Own Model
@@ -88,8 +74,6 @@ If you want to train your own model from scratch:
     ```
 
 3.  **Train the Model (on a GPU):**
-    This step is **not** recommended for your local computer. It will take days. You should run this on a service with a free GPU, like **Google Colab** or **Kaggle Notebooks**.
-
     * Upload all your `.py` files and the `recipes_training.jsonl` file.
     * Install the `requirements.txt`.
     * Run the training script:
