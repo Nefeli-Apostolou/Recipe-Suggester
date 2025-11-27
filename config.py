@@ -9,7 +9,7 @@ MODEL_NAME = "t5-small"
 TRAINING_FILE = "recipes_training.jsonl"
 
 # Where the final, trained model will be saved
-OUTPUT_DIR = "t5-recipe-generator"
+OUTPUT_DIR = "Nefeliap/recipe-generator-t5"
 
 # --- Tokenization ---
 # T5's max length is 512, but we can set lower
